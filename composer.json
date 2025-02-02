@@ -1,0 +1,38 @@
+{
+    "name": "pardnchiu/async",
+    "description": "An asynchronous task library built on ReactPHP, enabling dependency-based sorting with topological ordering for precise and efficient workflow management.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "邱敬幃 Pardn Chiu",
+            "email": "dev@pardn.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0",
+        "react/promise": "^2.8 || ^3.0",
+        "react/event-loop": "^1.1 || ^2.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "PD\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "scripts": {
+    },
+    "extra": {
+        "branch-alias": {
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

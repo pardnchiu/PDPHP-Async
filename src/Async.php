@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPHP;
+namespace PD;
 
 use React\Promise;
 use React\EventLoop\Loop;
