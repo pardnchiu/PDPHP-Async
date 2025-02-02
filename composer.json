@@ -20,7 +20,12 @@
     "autoload": {
         "psr-4": {
             "PD\\": "src/"
-        }
+        },
+        "exclude-from-classmap": [
+            ".gitignore",
+            "*.md",
+            "composer.json"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

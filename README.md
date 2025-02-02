@@ -25,7 +25,7 @@ composer require pardnchiu/async
 ```PHP
 <?php
 
-use PDPHP\Async;
+use PD\Async;
 
 $tasks = [
     'task1' => [
