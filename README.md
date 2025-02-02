@@ -3,7 +3,7 @@
 > PDPHP\Async is a PHP library using ReactPHP to perform asynchronous tasks, supporting task dependency handling and topological sorting.
 
 ![tag](https://img.shields.io/badge/tag-PHP%20Library-bb4444) 
-![size](https://img.shields.io/github/size/pardnchiu/PHPAsync/src/Async.php)<br>
+![size](https://img.shields.io/github/size/pardnchiu/PHP-Async/src/Async.php)<br>
 ![version](https://img.shields.io/packagist/v/pardnchiu/async)
 ![download](https://img.shields.io/packagist/dm/pardnchiu/async)
 
@@ -65,7 +65,7 @@ Async::run($tasks)
 
 ## License
 
-This source code project is licensed under the [MIT](https://github.com/pardnchiu/PHPAsync/blob/main/LICENSE) license.
+This source code project is licensed under the [MIT](https://github.com/pardnchiu/PHP-Async/blob/main/LICENSE) license.
 
 ## Creator
 
