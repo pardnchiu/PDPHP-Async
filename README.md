@@ -4,7 +4,6 @@
 
 ![tag](https://img.shields.io/badge/tag-PHP%20Library-bb4444) 
 ![size](https://img.shields.io/github/size/pardnchiu/PHPAsync/src/Async.php)<br>
-![license](https://img.shields.io/packagist/l/pardnchiu/async)
 ![version](https://img.shields.io/packagist/v/pardnchiu/async)
 ![download](https://img.shields.io/packagist/dm/pardnchiu/async)
 
