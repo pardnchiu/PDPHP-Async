@@ -13,16 +13,12 @@ class Async
         // 獲取事件循環實例
         $loop = Loop::get();
 
-        // 初始化任務流程和方法數組
         $flow = [];
         $methods = [];
 
-        // 遍歷所有的任務
         foreach ($tasks as $taskKey => $task) {
-            // 提取每個任務的方法
             $methods[$taskKey] = $task['method'];
 
-            // 如果該任務沒有依賴的任務，設置為空數組；否則，保存依賴的任務
             if (empty($task['tasks'])) {
                 $flow[$taskKey] = [];
             } else {
@@ -30,7 +26,7 @@ class Async
             };
         };
 
-        // 對任務流程進行拓撲排序，確保任務按正確的順序執行
+        // 對任務流程進行拓撲排序，確保正確的執行順序
         $sortedFlow = self::topologicalSort($flow);
 
         // 創建所有的任務，並根據排序好的流程和查詢參數
@@ -50,60 +46,56 @@ class Async
             });
     }
 
-    // 排序任務流程，使用拓撲排序算法
+    // 排序任務流程
     private static function topologicalSort($flow)
     {
-        $sorted = [];  // 已排序的任務
-        $visited = []; // 已訪問的任務
-        $temporary = []; // 臨時訪問的任務，用於檢測循環依賴
+        $sorted = [];
+        $visited = [];
+        $temporary = [];
 
-        // 遍歷所有任務
         foreach ($flow as $taskKey => $tasks) {
-            // 對每個任務進行訪問
             if (is_int($taskKey)) {
                 $taskKey = $tasks;
                 $tasks = [];
-            };
+            }
 
             if (!isset($visited[$taskKey])) {
                 self::visit($taskKey, $flow, $visited, $sorted, $temporary);
-            };
-        };
+            }
+        }
 
-        // 返回反轉後的排序結果，確保正確的順序
         return array_reverse($sorted);
     }
 
     private static function visit($taskKey, $flow, &$visited, &$sorted, &$temporary)
     {
-        // 如果在臨時數組中找到該任務，說明存在循環依賴
         if (isset($temporary[$taskKey])) {
             throw new \Exception("Circular dependency detected: " . $taskKey);
-        };
+        }
 
-        // 如果該任務還沒有被訪問過
         if (!isset($visited[$taskKey])) {
-            $temporary[$taskKey] = true; // 標記為臨時訪問
+            $temporary[$taskKey] = true;
 
-            // 遍歷該任務的所有依賴任務
             if (isset($flow[$taskKey])) {
                 foreach ($flow[$taskKey] as $task) {
                     self::visit($task, $flow, $visited, $sorted, $temporary);
-                };
-            };
+                }
+            }
 
-            unset($temporary[$taskKey]); // 移除臨時標記
-            $visited[$taskKey] = true; // 標記為已訪問
-            $sorted[] = $taskKey; // 添加到已排序的數組中
-        };
+            unset($temporary[$taskKey]);
+            $visited[$taskKey] = true;
+            $sorted[] = $taskKey;
+        }
     }
 
 
-    // 創建所有任務
+    // 創建任務
     private static function createTasks($methods, $flow, $sortedKeys, $loop)
     {
-        $tasks = []; // 初始化任務數組
-        $resolvedTasks = []; // 初始化已解決的任務數組
+        // 初始化任務數組
+        $tasks = [];
+        // 初始化已解決的任務數組
+        $resolvedTasks = [];
 
         // 遍歷排序後的任務鍵
         foreach ($sortedKeys as $taskKey) {
@@ -111,7 +103,7 @@ class Async
             $dependentTasks = isset($flow[$taskKey]) ? $flow[$taskKey] : [];
             // 創建並儲存該任務
             $tasks[$taskKey] = self::createTask($methods, $taskKey, $dependentTasks, $resolvedTasks, $loop);
-        };
+        }
 
         // 返回創建的所有任務
         return $tasks;
@@ -123,7 +115,7 @@ class Async
         // 如果該任務已經被解決，直接返回已解決的任務
         if (isset($resolvedTasks[$taskKey])) {
             return $resolvedTasks[$taskKey];
-        };
+        }
 
         // 創建一個新的 Promise 延遲對象
         $deferred = new Promise\Deferred();
@@ -134,10 +126,10 @@ class Async
             // 如果前置任務尚未解決，創建前置任務
             if (!isset($resolvedTasks[$task])) {
                 $resolvedTasks[$task] = self::createTask($methods, $task, [], $resolvedTasks, $loop);
-            };
+            }
             // 將前置任務的 Promise 添加到數組中
             $taskPromises[] = $resolvedTasks[$task];
-        };
+        }
 
         // 當所有前置任務解決後，執行當前任務
         Promise\all($taskPromises)->then(function () use ($methods, $taskKey, $deferred) {
