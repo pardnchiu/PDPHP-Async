@@ -1,22 +1,42 @@
 {
     "name": "pardnchiu/async",
-    "description": "An asynchronous task library built on ReactPHP, enabling dependency-based sorting with topological ordering for precise and efficient workflow management.",
+    "description": "PD\\Async is a PHP library using ReactPHP to perform asynchronous tasks, supporting task dependency handling and topological sorting.",
     "type": "library",
+    "keywords": [
+        "async",
+        "asynchronous",
+        "reactphp",
+        "promise",
+        "task-runner",
+        "event-loop",
+        "php",
+        "pardnchiu",
+        "邱敬幃"
+    ],
+    "homepage": "https://pardn.io",
     "license": "MIT",
     "authors": [
         {
             "name": "邱敬幃 Pardn Chiu",
-            "email": "dev@pardn.io"
+            "email": "dev@pardn.io",
+            "homepage": "https://pardn.io",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "email": "dev@pardn.io",
+        "issues": "https://github.com/pardnchiu/PHP-Session/issues",
+        "source": "https://github.com/pardnchiu/PHP-Session",
+        "docs": "https://github.com/pardnchiu/PHP-Session/blob/main/README.md"
+    },
     "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "php": ">=7.4",
         "react/promise": "^2.8 || ^3.0",
         "react/event-loop": "^1.1 || ^2.0"
     },
-    "require-dev": {
-    },
+    "require-dev": {},
     "autoload": {
         "psr-4": {
             "PD\\": "src/"
@@ -28,16 +48,22 @@
         ]
     },
     "autoload-dev": {
-        "psr-4": {
-        }
+        "psr-4": {}
     },
-    "scripts": {
-    },
+    "scripts": {},
     "extra": {
-        "branch-alias": {
-        }
+        "branch-alias": {}
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "archive": {
+        "exclude": [
+            "/.git",
+            "/*.md",
+            "/.gitignore"
+        ]
     }
 }

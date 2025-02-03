@@ -1,6 +1,6 @@
 # PD\Async
 
-> PDPHP\Async is a PHP library using ReactPHP to perform asynchronous tasks, supporting task dependency handling and topological sorting.
+> PD\Async is a PHP library using ReactPHP to perform asynchronous tasks, supporting task dependency handling and topological sorting.
 
 ![tag](https://img.shields.io/badge/tag-PHP%20Library-bb4444) 
 ![size](https://img.shields.io/github/size/pardnchiu/PHP-Async/src/Async.php)<br>
@@ -12,6 +12,19 @@
 - Handling of Task Dependencies
 - Ensuring correct execution order via Topological Sorting
 
+## Key Capabilities
+
+- Non-blocking Task Processing
+- Task Dependency Management
+- Smart Execution Ordering
+- Promise Error Handling
+- Flexible Task Configuration
+
+## Dependencies
+
+- `react/promise` - Promise/A+ for PHP
+- `react/event-loop` - Event Loop Library for PHP
+
 ## How to Use
 
 ### Install
@@ -20,9 +33,7 @@
 composer require pardnchiu/async
 ```
 
-### Use
-
-```PHP
+```php
 <?php
 
 use PD\Async;
